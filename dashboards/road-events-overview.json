@@ -1,0 +1,60 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "title": "API Request Rate & Health",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "rate(http_requests_total{namespace=\"road-events\"}[5m])",
+          "legendFormat": "{{status}}"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 2,
+      "title": "Road Events Ingested",
+      "type": "stat",
+      "targets": [
+        {
+          "expr": "sum(increase(road_events_total[1h]))"
+        }
+      ]
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": ["road-events"],
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Road Events Overview",
+  "version": 1
+}

@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: road-events-api-monitor
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+    app.kubernetes.io/name: road-events-api
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: road-events-api
+  namespaceSelector:
+    matchNames:
+      - road-events
+  endpoints:
+    - port: http
+      path: /healthz
+      interval: 15s
+      scrapeTimeout: 10s
